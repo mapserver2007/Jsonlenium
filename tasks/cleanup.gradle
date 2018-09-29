@@ -1,0 +1,5 @@
+task cleanAll(type: Delete) {
+    delete 'build/classes'
+    delete 'build/json'
+    delete 'src/main/groovy/com/kakaku/test/generate'
+}

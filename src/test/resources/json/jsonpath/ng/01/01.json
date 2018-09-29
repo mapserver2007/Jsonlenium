@@ -1,0 +1,15 @@
+{
+  "title": "jsonapi",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "jsonpath": "invalid hierarchy",
+      "testcase": [
+        {
+          "jsonpath": "sample path",
+          "expect": "sample value"
+        }
+      ]
+    }
+  ]
+}

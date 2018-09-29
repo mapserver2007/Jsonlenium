@@ -1,0 +1,32 @@
+{
+  "title": "test",
+  "remark": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "k3c": [
+        {
+          "name": "key1",
+          "expect": "value1"
+        },
+        {
+          "name": "key1",
+          "expect": "value1"
+        }
+      ]
+    },
+    {
+      "url": "http://example.com/",
+      "k3c": [
+        {
+          "name": "key1",
+          "expect": "value1"
+        },
+        {
+          "name": "key1",
+          "expect": "value1"
+        }
+      ]
+    }
+  ]
+}

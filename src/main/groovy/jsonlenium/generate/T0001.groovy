@@ -1,0 +1,66 @@
+package jsonlenium.ui
+
+import jsonlenium.build.io.JsonReader
+import jsonlenium.build.util.MessageLocale
+import jsonlenium.constant.JsonleniumEnv
+import geb.Page
+import geb.url.UrlFragment
+import org.codehaus.groovy.tools.Utilities
+import org.openqa.selenium.WebDriverException
+import spock.lang.Ignore
+import spock.lang.Unroll
+
+class T0001 extends Jsonlenium {
+    @Unroll
+    "#item.title"(item) {
+        expect:
+        runTest(item.testcase)
+        where:
+        item << testcases()
+    }
+    @Ignore
+    testcases() {
+        def tests
+        try {
+            MessageLocale.load()
+            def file = new File(System.getProperty(JsonleniumEnv.USER_DIR) + "/build/json/T0001.json")
+            tests = new JsonReader().parse(file)
+        } catch (Throwable e) {
+            def eol = Utilities.eol()
+            System.err.println "[NG]${e.message}${eol}${e.stackTrace.join(eol)}"
+            tests = [[title: e.message]]
+        }
+        tests
+    }
+    def setup() {
+        // When a URI class called in geb.Browser#go encodes URL of Shift_JIS,
+        // it gets garbled (it is internally fixed to UTF-8). Therefore, extended origin class with metaClass.
+        browser.metaClass.go = { Map params = [:], String url = null, UrlFragment fragment = null ->
+            def newUri = calculateUri(url, params, fragment)
+            def currentUri = null
+            try {
+                def currentUrl = driver.currentUrl
+                currentUri = currentUrl ? new URI(currentUrl) : null
+            } catch (NullPointerException npe) {
+            } catch (WebDriverException webDriverException) {
+                if (!webDriverException.message.contains("Remote browser did not respond to getCurrentUrl")) {
+                    throw webDriverException
+                }
+            }
+            if (currentUri == newUri) {
+                driver.navigate().refresh()
+            } else {
+                driver.get(url) // Fiexed here for Shift_JIS encoding url.
+                if (sameUrlWithDifferentFragment(currentUri, newUri)) {
+                    driver.navigate().refresh()
+                }
+            }
+            if (!page) {
+                page(Page)
+            }
+        }
+    }
+    def cleanupSpec() {
+        quitBrowser()
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "testmeta",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "meta": [
+        {
+          "name": "key1",
+          "case_sensitive": false,
+          "expect": "VALUE1"
+        }
+      ]
+    }
+  ]
+}

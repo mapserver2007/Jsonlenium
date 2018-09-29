@@ -1,0 +1,32 @@
+{
+  "title": "test",
+  "remark": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "selector": "selector1",
+          "expect": "test1"
+        },
+        {
+          "selector": "selector2",
+          "expect": "test2"
+        }
+      ]
+    },
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "selector": "selector1",
+          "expect": "test1"
+        },
+        {
+          "selector": "selector2",
+          "expect": "test2"
+        }
+      ]
+    }
+  ]
+}

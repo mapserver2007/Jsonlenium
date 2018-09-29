@@ -1,0 +1,15 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "selector": "sample path",
+          "case_sensitive": true,
+          "expect": "result"
+        }
+      ]
+    }
+  ]
+}

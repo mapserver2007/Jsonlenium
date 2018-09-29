@@ -1,0 +1,16 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "selector": ".test p",
+          "attr": "id",
+          "case_sensitive": false,
+          "expect": "AAA"
+        }
+      ]
+    }
+  ]
+}

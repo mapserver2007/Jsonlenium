@@ -1,0 +1,12 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "not_expect_all": "invalid not_expect",
+      "testcase": [
+        { "selector": "selector", "not_expect_all": "not_expect_all" }
+      ]
+    }
+  ]
+}

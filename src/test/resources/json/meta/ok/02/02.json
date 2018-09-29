@@ -1,0 +1,18 @@
+{
+  "title": "testmeta",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "meta": [
+        {
+          "name": "key3",
+          "expect": "value3"
+        },
+        {
+          "name": "key4",
+          "expect": "value4"
+        }
+      ]
+    }
+  ]
+}

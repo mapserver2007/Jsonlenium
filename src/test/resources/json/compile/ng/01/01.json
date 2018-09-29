@@ -1,0 +1,31 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "dummy",
+      "testcase": [
+        { "selector": "sample selector", "expect": "sample expectation value", "testcase": "dummy" }
+      ],
+      "meta": [
+        {
+          "name": "key1",
+          "expect": "value1"
+        },
+        {
+          "name": "key2",
+          "expect": 123
+        }
+      ],
+      "catalyst": [
+        {
+          "name": "key1",
+          "expect": "value1"
+        },
+        {
+          "name": "key2",
+          "expect": 123
+        }
+      ]
+    }
+  ]
+}

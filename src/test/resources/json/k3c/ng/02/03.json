@@ -1,0 +1,9 @@
+{
+  "title": "testk3c",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "k3c": []
+    }
+  ]
+}

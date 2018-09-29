@@ -1,0 +1,12 @@
+{
+  "title": "click",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "click": {
+        "selector": "sample selector",
+        "expect": "sample expectation value"
+      }
+    }
+  ]
+}

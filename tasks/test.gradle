@@ -1,0 +1,40 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'jacoco'
+
+task unitTest(type: Test) {
+    outputs.upToDateWhen { false }
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    doFirst {
+        systemProperty "geb.build.reportsDir", file("${projectDir}/build/reports/reports")
+        systemProperty "org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog"
+        systemProperty "java.util.logging.Logger", "java.util.logging.Level.OFF"
+    }
+}
+
+task coverageTest(type: JacocoReport, dependsOn: unitTest) {
+    reports {
+        html.setDestination(file("${projectDir}/build/reports/coverage/${project.name}"))
+        html.enabled = true
+        xml.enabled = false
+        csv.enabled = false
+    }
+
+    classDirectories = fileTree(
+        dir: "${projectDir}/build/classes/groovy/main",
+        excludes: [
+            '**/T0*.class'
+        ]
+    )
+
+    sourceDirectories = files('src/main/groovy')
+    executionData = files('build/jacoco/unitTest.exec')
+
+    doLast {
+        jacoco {
+            reportsDir = file("${buildDir}/reports/coverage")
+        }
+    }
+}

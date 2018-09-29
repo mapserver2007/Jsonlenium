@@ -1,0 +1,14 @@
+{
+  "title": "testcatalyst",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "catalyst": [
+        {
+          "name": 123,
+          "expect": "value1"
+        }
+      ]
+    }
+  ]
+}

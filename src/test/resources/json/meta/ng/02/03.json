@@ -1,0 +1,9 @@
+{
+  "title": "testmeta",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "meta": []
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "jsonpath": "$.name",
+          "case_sensitive": false,
+          "expect": "test"
+        }
+      ]
+    }
+  ]
+}

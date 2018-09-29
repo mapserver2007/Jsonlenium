@@ -1,0 +1,10 @@
+{
+  "要素マッチの数が多すぎる場合": [
+    {
+      "url": "http://kakaku.com/",
+      "testcase": [
+        { "selector": "div", "expect": "/.*/" }
+      ]
+    }
+  ]
+}

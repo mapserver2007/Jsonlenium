@@ -1,0 +1,18 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        {
+          "xpath": "sample xpath",
+          "click": {
+            "xpath": "sample xpath from click",
+            "attr": "sample attr from click",
+            "expect": "sample expectation value from click"
+          }
+        }
+      ]
+    }
+  ]
+}

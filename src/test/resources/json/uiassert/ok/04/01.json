@@ -1,0 +1,15 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "selector": ".test",
+          "remark": "wave dash",
+          "expect": "〜"
+        }
+      ]
+    }
+  ]
+}

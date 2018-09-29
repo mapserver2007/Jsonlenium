@@ -1,0 +1,15 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        {
+          "xpath": "xpath",
+          "attr": 123,
+          "expect": "test"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "test",
+  "remark": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "catalyst": [
+        {
+          "name": "key1",
+          "expect": "value1"
+        },
+        {
+          "name": "key2",
+          "expect": "value2"
+        }
+      ]
+    },
+    {
+      "url": "http://example.com/",
+      "catalyst": [
+        {
+          "name": "key1",
+          "expect": "value1"
+        },
+        {
+          "name": "key2",
+          "expect": "value2"
+        }
+      ]
+    }
+  ]
+}

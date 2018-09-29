@@ -1,0 +1,9 @@
+{
+  "title": "testcatalyst",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "catalyst": []
+    }
+  ]
+}

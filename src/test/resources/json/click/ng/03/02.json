@@ -1,0 +1,35 @@
+{
+  "title": "click",
+  "testsuite": [
+    {
+      "url": "http://expample.com/",
+      "testcase": [
+        {
+          "selector": "selector1",
+          "input": [
+            {
+              "selector": "selector2",
+              "value": "test1"
+            }
+          ],
+          "click": {
+            "selector": "selector3",
+            "input": [
+              {
+                "selector": "selector4",
+                "value": "test4"
+              },
+              {
+                "selector": "selector5",
+                "value": "test5"
+              }
+            ],
+            "click": {
+              "selector": "selector6"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "expect": "invalid expect",
+      "testcase": [
+        { "selector": "selector", "expect": "expect" }
+      ]
+    }
+  ]
+}

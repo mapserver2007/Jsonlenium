@@ -1,0 +1,21 @@
+{
+  "title": "input",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        {
+          "selector": "sample selector",
+          "value": "invalid value",
+          "input": [
+            {
+              "selector": "sample selector2",
+              "value": "sample value"
+            }
+          ],
+          "expect": "test"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply from: 'tasks/test.gradle'
+apply from: 'tasks/cleanup.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    drivers = [
+        "chrome": getProperty("selenium.webdriver.chrome"),
+        "phantomjs": getProperty("selenium.webdriver.phantomjs")
+    ]
+
+    ant.condition(property: "os", value: "windows") { os(family: "windows") }
+    ant.condition(property: "os", value: "linux"  ) { os(family: "unix")    }
+    ant.condition(property: "phantomjsDriver", value: "windows/phantomjs_${drivers.phantomjs}.exe") { os(family: "windows") }
+    ant.condition(property: "phantomjsDriver", value: "linux/phantomjs_${drivers.phantomjs}") { os(family: "unix") }
+    ant.condition(property: "chromeDriver", value: "windows/chromedriver_${drivers.chrome}.exe") { os(family: "windows") }
+    ant.condition(property: "chromeDriver", value: "linux/chromedriver_${drivers.chrome}") { os(family: "unix") }
+
+    files("tasks/setup.${ant.properties['os']}.gradle").each {
+        if (it.exists()) {
+            apply from: it
+        }
+    }
+}
+
+sourceSets {
+    uiTest { sourceSet ->
+        sourceSet.groovy.srcDir file("src/main/groovy/jsonlenium/generate")
+    }
+    uiParallelTest { sourceSet ->
+        sourceSet.groovy.srcDir file("src/main/groovy/jsonlenium/generate")
+    }
+    uiTestCompile { sourceSet ->
+        sourceSet.groovy.srcDir file("src/main/groovy/jsonlenium/build")
+    }
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:2.5.2"
+    compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+    compile 'org.gebish:geb-spock:1.1.1'
+    compile "org.gebish:geb-core:1.1.1"
+    compile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    compile 'org.jsoup:jsoup:1.11.2'
+    compile 'org.apache.ant:ant:1.9.7'
+    compile 'org.slf4j:slf4j-log4j12:1.7.25'
+    compile 'com.jayway.jsonpath:json-path:2.4.0'
+    compile 'commons-io:commons-io:2.6'
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:3.11.0"
+    compile "org.seleniumhq.selenium:selenium-support:3.12.0"
+    compile "com.codeborne:phantomjsdriver:1.4.4"
+
+    uiTestCompile sourceSets.main.output
+    uiTestCompile configurations.compile
+    uiParallelTestCompile sourceSets.main.output
+    uiParallelTestCompile configurations.compile
+    uiTestCompileCompile sourceSets.main.output
+    uiTestCompileCompile configurations.compile
+}
+
+task uiTestCompile(type: Test) {
+    outputs.upToDateWhen { false }
+    testClassesDirs = sourceSets.uiTestCompile.output.classesDirs
+    classpath = sourceSets.uiTestCompile.runtimeClasspath
+
+    drivers.each { driver, ignore ->
+        dependsOn driver
+    }
+
+    doFirst {
+        systemProperty "jsonlenium.url", System.getProperty("url")
+        systemProperty "jsonlenium.path", System.getProperty("path")
+        systemProperty "jsonlenium.division", System.getProperty("division")
+        systemProperty "jsonlenium.projectDir", projectDir
+    }
+}
+
+task uiTest(type: Test, dependsOn: uiTestCompile) {
+    mustRunAfter uiTestCompile
+    outputs.upToDateWhen { false }
+    testClassesDirs = sourceSets.uiTest.output.classesDirs
+    classpath = sourceSets.uiTest.runtimeClasspath
+
+    doFirst {
+        systemProperty "geb.env", System.getProperty("driver")
+        systemProperty "geb.build.reportsDir", file("${projectDir}/build/reports/reports")
+        systemProperty "webdriver.chrome.driver", "${projectDir}/driver/${ant.properties.chromeDriver}"
+        systemProperty "webdriver.ghost.driver", "${projectDir}/driver/${ant.properties.phantomjsDriver}"
+        systemProperty "jsonlenium.timeout", System.getProperty("timeout")
+        systemProperty "jsonlenium.division", 1
+    }
+}
+
+task uiParallelTest(type: Test, dependsOn: uiTestCompile) {
+    mustRunAfter uiTestCompile
+    outputs.upToDateWhen { false }
+    testClassesDirs = sourceSets.uiParallelTest.output.classesDirs
+    classpath = sourceSets.uiParallelTest.runtimeClasspath
+
+    maxParallelForks Runtime.runtime.availableProcessors()
+    forkEvery 5
+
+    doFirst {
+        systemProperty "geb.env", System.getProperty("driver")
+        systemProperty "geb.build.reportsDir", file("${projectDir}/build/reports/reports")
+        systemProperty "webdriver.chrome.driver", "${projectDir}/driver/${ant.properties.chromeDriver}"
+        systemProperty "webdriver.ghost.driver", "${projectDir}/driver/${ant.properties.phantomjsDriver}"
+        systemProperty "jsonlenium.timeout", System.getProperty("timeout")
+        systemProperty "jsonlenium.division", System.getProperty("division")
+    }
+}

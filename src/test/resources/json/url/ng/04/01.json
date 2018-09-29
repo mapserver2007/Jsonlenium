@@ -1,0 +1,14 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "invalid url",
+      "testcase": [
+        {
+          "selector": "selector",
+          "expect": "test"
+        }
+      ]
+    }
+  ]
+}

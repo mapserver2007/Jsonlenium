@@ -1,0 +1,14 @@
+{
+  "title": "jsonapi",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        {
+          "jsonpath": "sample path",
+          "not_expect": "sample value"
+        }
+      ]
+    }
+  ]
+}

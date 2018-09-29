@@ -1,0 +1,13 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "testcase": [
+        {
+          "selector": "sample selector",
+          "expect": "ok"
+        }
+      ]
+    }
+  ]
+}

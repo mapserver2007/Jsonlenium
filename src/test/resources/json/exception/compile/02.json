@@ -1,0 +1,10 @@
+{
+  "UTF-8でないテストファイルの場合": [
+    {
+      "url": "http://kakaku.com/bb/",
+      "testcase": [
+          { "selector": "title", "expect": "/^価格\.com.+比較$/" }
+      ]
+    }
+  ]
+}

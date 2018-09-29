@@ -1,0 +1,14 @@
+{
+  "title": "input",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "input": [
+        {
+          "selector": "sample selector",
+          "value": "sample value"
+        }
+      ]
+    }
+  ]
+}

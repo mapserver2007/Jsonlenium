@@ -1,0 +1,14 @@
+{
+  "title": "testcatalyst",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "catalyst": [
+        {
+          "name": "enable_jsvar_value",
+          "expect": "s.prop1"
+        }
+      ]
+    }
+  ]
+}

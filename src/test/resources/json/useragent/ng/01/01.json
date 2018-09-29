@@ -1,0 +1,12 @@
+{
+  "title": "test",
+  "useragent": "UserAgent",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        { "selector": "sample path", "expect": "result" }
+      ]
+    }
+  ]
+}

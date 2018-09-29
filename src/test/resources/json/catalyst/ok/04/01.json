@@ -1,0 +1,14 @@
+{
+  "title": "testcatalyst",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "catalyst": [
+        {
+          "name": "begin 's.' value",
+          "expect": "s.kakaku.com"
+        }
+      ]
+    }
+  ]
+}

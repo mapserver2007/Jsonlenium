@@ -1,0 +1,11 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        { "xpath": ".test", "expect_all": "result" }
+      ]
+    }
+  ]
+}

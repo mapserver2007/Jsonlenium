@@ -1,0 +1,16 @@
+{
+  "title": "click",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        {
+          "selector": "selector1",
+          "click": {
+            "selector": "selector2"
+          }
+        }
+      ]
+    }
+  ]
+}

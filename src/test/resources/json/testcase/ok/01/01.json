@@ -1,0 +1,11 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "testcase": [
+        { "selector": "sample selector", "expect": "sample expectation value" }
+      ]
+    }
+  ]
+}

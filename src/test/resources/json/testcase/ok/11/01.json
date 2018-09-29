@@ -1,0 +1,25 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "testcase": [
+        {
+          "selector": "selector value",
+          "click": {
+            "meta": [
+              {
+                "name": "key1",
+                "expect": "value1"
+              },
+              {
+                "name": "key2",
+                "expect": "value2"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "testk3c",
+  "testsuite": [
+    {
+      "url": "http://example.com/",
+      "k3c": [
+        {
+          "name": "key1",
+          "case_sensitive": false,
+          "expect": "value1"
+        }
+      ]
+    }
+  ]
+}

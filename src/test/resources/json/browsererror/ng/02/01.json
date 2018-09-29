@@ -1,0 +1,9 @@
+{
+  "title": "test",
+  "testsuite": [
+    {
+      "url": "http://sample.com/",
+      "browsererror": 123
+    }
+  ]
+}
