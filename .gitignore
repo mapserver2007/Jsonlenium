@@ -52,7 +52,7 @@ crashlytics.properties
 crashlytics-build.properties
 
 # json test files
-src/main/groovy/com/kakaku/test/generate/
+src/main/groovy/jsonlenium/generate/
 
 # log files
 *.log
