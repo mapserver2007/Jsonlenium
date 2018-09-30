@@ -46,7 +46,7 @@ class TestFileGenerator {
     }
 
     void generate(List<List<Map<String, ?>>> testsuite, @ClosureParams(value = SimpleType, options = ["java.util.Map"]) Closure closure) {
-        def templateFile = new File(Class.getResource(Path.JSONLENIUM_TEMPLATE_FILE_PATH).path)
+        def templateFile = new File(getClass().getResource(Path.JSONLENIUM_TEMPLATE_FILE_PATH).path)
         def sourceCode = FileUtils.readFileToString(templateFile, "UTF-8")
 
         def rootPath = System.getProperty(JsonleniumEnv.USER_DIR)

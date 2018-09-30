@@ -114,3 +114,7 @@ task uiParallelTest(type: Test, dependsOn: uiTestCompile) {
         systemProperty "jsonlenium.division", System.getProperty("division")
     }
 }
+
+tasks.withType(Test) {
+    jvmArgs "--illegal-access=deny"
+}
