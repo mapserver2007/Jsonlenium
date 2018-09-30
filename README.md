@@ -2,7 +2,7 @@
 Jsonlenium is a tool to perform E2E tests using JSON files.
 
 ## Preparation
-Java is necessary to execute (Java 8 or later) Please install it.
+Java is necessary to execute (Java 8 or later). Please install it.
 
 ## Usage
 ```
@@ -21,14 +21,14 @@ Available Gradle tasks:
 | uiParallelTest | Execute the E2E test in parallel.                                                                            |
 | uiTestCompile  | It is implicitly called by a uiTest and uiParallelTest task, therefore do not need to explicitly execute it. |
 | cleanAll       | Delete the compiled files.<br>When updating the JSON test file, it needs to be executed.                     |
-| unitTest       | Executse unit test.                                                                                          |
+| unitTest       | Execute unit test.                                                                                          |
 | coverageTest   | Execute unit test and coverage mesurement.                                                                   |
 
 ## Specifiable parameters
 
 | Parameter  | Description                                                                                                                                                                                                                                             | Example                 | Required |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|----------|
-| -Ddriver   | Driver used for execution (WebDriver).<br>phantomjs/chrome/headlesschrome can be specified.                                                                                                                                                             | -Ddriver=headlesschrome | ◯        |
+| -Ddriver   | Driver used for execution (WebDriver).<br>phantomjs/chrome/headlesschrome can be specified.                                                                                                                                                             | -Ddriver=chrome         | ◯        |
 | -Dpath     | JSON test file path or directory path.                                                                                                                                                                                                                  | -Dpath=C:\test.json     | ◯        |
 | -Ddivision | Number of partitions to allocate to one process when executing tests in parallel.<br>Increasing the value of the division as the total number of tests increases increases the execution speed.<br>Only for uiParallelTest task.<br>Default value is 5. | -Ddivision=5            | -        |
 | -Dtimeout  | Maximum response time of running test (sec).<br>If the response becomes longer than the timeout time, it ends as an NG test.<br>Timeout is unlimited if not specified.                                                                                  | -Dtimeout=300           | -        |
@@ -36,5 +36,5 @@ Available Gradle tasks:
 | -d         | Output the log as standard output (debug level).                                                                                                                                                                                                        | -d                      | -        |
 
 ## License
-Licensed under the MIT  
+Licensed under the MIT
 http://www.opensource.org/licenses/mit-license.php
