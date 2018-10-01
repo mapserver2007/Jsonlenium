@@ -7,7 +7,7 @@ class CompileTestFixture {
     static List<File> JSONファイルリスト_ファイル指定() {
         def factory = new EventFactory()
         factory.loadTestCase()
-        factory.getTestFileList(Class.getResource("/json/testcase/ok/01/01.json").path)
+        factory.getTestFileList(new File("src/test/resources/json/testcase/ok/01/01.json").path)
     }
 
     static List<File> JSON存在しないファイルリスト_ファイル指定() {
