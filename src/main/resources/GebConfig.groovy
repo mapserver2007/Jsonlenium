@@ -1,4 +1,4 @@
-package com.kakaku.test
+package jsonlenium.config
 
 import jsonlenium.constant.Driver
 import jsonlenium.ui.util.WebDriverFactory

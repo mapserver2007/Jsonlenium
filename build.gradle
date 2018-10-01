@@ -1,3 +1,4 @@
+apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'maven'
@@ -25,6 +26,10 @@ ext {
         if (it.exists()) {
             apply from: it
         }
+    }
+
+    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
+        apply from: 'tasks/ignore_warnings.gradle'
     }
 }
 
@@ -114,3 +119,4 @@ task uiParallelTest(type: Test, dependsOn: uiTestCompile) {
         systemProperty "jsonlenium.division", System.getProperty("division")
     }
 }
+

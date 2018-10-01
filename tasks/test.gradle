@@ -2,6 +2,35 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 
+ext {
+    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
+        apply from: 'tasks/ignore_warnings.gradle'
+    }
+}
+
+
+
+sourceSets {
+
+//    unitTest { sourceSet ->
+//        sourceSet.groovy.srcDirs = [
+//            "src/test/groovy/jsonlenium/spock",
+//            "src/main/groovy/jsonlenium/"
+//        ]
+//    }
+//    unitTest { sourceSet ->
+//        sourceSet.groovy.srcDirs = [
+//            "src/test/groovy/jsonlenium/spock",
+//            "src/main/groovy/jsonlenium/"
+//        ]
+//    }
+}
+
+//dependencies {
+//    unitTestCompile sourceSets.test.output
+//    unitTestCompile configurations.compile
+//}
+
 task unitTest(type: Test) {
     outputs.upToDateWhen { false }
     testClassesDirs = sourceSets.test.output.classesDirs
