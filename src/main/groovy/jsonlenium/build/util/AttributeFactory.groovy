@@ -54,7 +54,7 @@ class AttributeFactory {
             }
         }
         if (!isValid) {
-            closure.call(anyRequireds[anyRequiredGroupKey][parentAttr].collect { "'${it}'" }.join(","))
+            closure.call(anyRequireds[anyRequiredGroupKey][parentAttr].collect { "'${it}'" }.sort().join(","))
         }
     }
 
