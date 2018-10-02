@@ -1,4 +1,5 @@
 # Jsonlenium
+[![CircleCI](https://circleci.com/gh/mapserver2007/Jsonlenium/tree/master.svg?style=svg)](https://circleci.com/gh/mapserver2007/Jsonlenium/tree/master)  
 Jsonlenium is a tool to perform E2E tests using JSON files.
 
 ## Preparation

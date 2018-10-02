@@ -1,4 +1,5 @@
 # Jsonlenium
+[![CircleCI](https://circleci.com/gh/mapserver2007/Jsonlenium/tree/master.svg?style=svg)](https://circleci.com/gh/mapserver2007/Jsonlenium/tree/master)  
 JsonleniumはJSONファイルを使ってE2Eテストを行うツールです。
 
 ## 準備
