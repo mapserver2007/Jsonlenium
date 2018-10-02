@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/openjdk:10.0.2-jdk-browsers
+
+    steps:
+      - checkout
+
+      - restore_cache:
+        keys:
+          - dependency-cache-{{ checksum "build.gradle" }}
+
+      - save_cache:
+        key: dependency-cache-{{ checksum "build.gradle" }}
+        paths:
+          - ~/.gradle
+
+      - run: echo 'test'
+      - run: ./gradlew cleanAll
+      - run: ./gradlew unitTest
