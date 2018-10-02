@@ -1,6 +1,5 @@
 package jsonlenium.build.util
 
-
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import jsonlenium.annotation.AnyRequired

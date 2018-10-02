@@ -1,16 +1,11 @@
 package jsonlenium.ui.util
 
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.SimpleType
 import jsonlenium.annotation.OperationType
 import jsonlenium.annotation.TestCase
 import jsonlenium.build.event.EventBase
-import jsonlenium.constant.EventState
-import jsonlenium.constant.JsonleniumEnv
-import jsonlenium.constant.Operation
-import jsonlenium.constant.Path
-import jsonlenium.constant.TestState
-import groovy.transform.stc.ClosureParams
-import groovy.transform.stc.SimpleType
-import jsonlenium.constant.Event
+import jsonlenium.constant.*
 import jsonlenium.ui.assertion.AssertionBase
 import jsonlenium.ui.operator.IOperator
 import jsonlenium.util.Message
@@ -139,13 +134,13 @@ class RunTest {
                     web.execSelector()
                         .execXpath()
                         .elements.readAll { elem ->
-                        def tag = elem.tag()
-                        if (tag == 'input' || tag == 'textarea') {
-                            if (elem.isDisplayed()) { // If the element type is hidden, can not set the value
-                                elem.value(testcase.value)
+                            def tag = elem.tag()
+                            if (tag == 'input' || tag == 'textarea') {
+                                if (elem.isDisplayed()) { // If the element type is hidden, can not set the value
+                                    elem.value(testcase.value)
+                                }
                             }
                         }
-                    }
                     break
             }
         } catch (InvalidElementStateException | InvalidSelectorException e) {

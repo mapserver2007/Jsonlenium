@@ -1,11 +1,11 @@
 package jsonlenium.ui.util
 
-import jsonlenium.constant.Driver
-import jsonlenium.constant.TestState
 import groovy.json.JsonException
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.json.StringEscapeUtils
+import jsonlenium.constant.Driver
+import jsonlenium.constant.TestState
 import jsonlenium.util.Message
 import org.codehaus.groovy.tools.Utilities
 import org.openqa.selenium.logging.LogEntries

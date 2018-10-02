@@ -1,8 +1,8 @@
 package jsonlenium.ui.util
 
-import jsonlenium.constant.TestState
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
+import jsonlenium.constant.TestState
 
 class WebNavigator<T> {
     private Iterable<T> navigator

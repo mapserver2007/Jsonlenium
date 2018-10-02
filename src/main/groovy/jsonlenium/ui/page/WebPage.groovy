@@ -1,6 +1,5 @@
 package jsonlenium.ui.page
 
-
 import geb.Page
 import geb.navigator.Navigator
 import jsonlenium.ui.util.WebPageWait

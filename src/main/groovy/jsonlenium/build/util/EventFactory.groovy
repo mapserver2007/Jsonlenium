@@ -1,12 +1,10 @@
 package jsonlenium.build.util
 
-
 import groovy.json.JsonException
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import groovyx.net.http.URIBuilder
 import jsonlenium.annotation.TestCase
-
 import jsonlenium.build.attr.CaseSensitive
 import jsonlenium.build.attr.TestSuite
 import jsonlenium.build.attr.Title

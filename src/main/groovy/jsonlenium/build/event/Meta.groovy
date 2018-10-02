@@ -1,6 +1,5 @@
 package jsonlenium.build.event
 
-
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import groovyx.net.http.URIBuilder

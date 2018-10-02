@@ -1,8 +1,6 @@
 package jsonlenium.build.util
 
-
 import jsonlenium.util.Message
-
 
 class JsonFileValidator {
     private String fileLocation

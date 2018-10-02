@@ -1,17 +1,10 @@
 package jsonlenium.build.util
 
-
-import jsonlenium.build.attr.Catalyst
-import jsonlenium.build.attr.Expect
-import jsonlenium.build.attr.ExpectAll
-import jsonlenium.build.attr.K3C
-import jsonlenium.build.attr.Meta
-import jsonlenium.build.attr.NotExpect
-import jsonlenium.build.attr.NotExpectAll
-import jsonlenium.constant.Event
-import jsonlenium.constant.EventWeight
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
+import jsonlenium.build.attr.*
+import jsonlenium.constant.Event
+import jsonlenium.constant.EventWeight
 
 class EventUtil {
     static void createMetaEvent(Map<String, ?> elem, @ClosureParams(value = SimpleType, options = ["java.util.Map", "java.lang.Integer", "java.lang.Integer"]) Closure closure) {

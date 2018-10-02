@@ -1,8 +1,7 @@
 package jsonlenium.ui.operator
 
-
-import jsonlenium.constant.JsonleniumEnv
 import jsonlenium.constant.Event
+import jsonlenium.constant.JsonleniumEnv
 import jsonlenium.ui.page.IPage
 import jsonlenium.ui.util.WebNavigator
 import org.openqa.selenium.Dimension

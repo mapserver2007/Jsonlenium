@@ -1,12 +1,12 @@
 package jsonlenium.ui.assertion
 
+import groovy.json.JsonSlurper
 import jsonlenium.annotation.AssertionType
 import jsonlenium.annotation.OperationType
 import jsonlenium.annotation.TestCase
 import jsonlenium.constant.Event
 import jsonlenium.constant.Operation
 import jsonlenium.constant.TestState
-import groovy.json.JsonSlurper
 import jsonlenium.util.Message
 import org.openqa.selenium.WebDriverException
 

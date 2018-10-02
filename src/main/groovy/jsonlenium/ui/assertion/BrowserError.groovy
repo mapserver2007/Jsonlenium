@@ -1,9 +1,9 @@
 package jsonlenium.ui.assertion
 
+import jsonlenium.annotation.AssertionType
 import jsonlenium.annotation.OperationType
 import jsonlenium.annotation.TestCase
 import jsonlenium.constant.Event
-import jsonlenium.annotation.AssertionType
 import jsonlenium.constant.Operation
 import org.openqa.selenium.logging.LogEntries
 
