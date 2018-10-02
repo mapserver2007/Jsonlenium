@@ -2,7 +2,6 @@ package jsonlenium.spock
 
 import jodd.util.ClassLoaderUtil
 import jsonlenium.build.CompileTest
-
 import spock.lang.Specification
 import spock.lang.Unroll
 

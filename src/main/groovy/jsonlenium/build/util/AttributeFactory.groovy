@@ -25,8 +25,8 @@ class AttributeFactory {
 
     AttributeFactory() {
         attributes = [:]
-        requireds = [:]
-        anyRequireds = [:]
+        requireds = new TreeMap<>()
+        anyRequireds = new TreeMap<>()
         types = [:]
         loadAttribute()
     }
