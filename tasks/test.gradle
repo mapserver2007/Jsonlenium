@@ -8,29 +8,6 @@ ext {
     }
 }
 
-
-
-sourceSets {
-
-//    unitTest { sourceSet ->
-//        sourceSet.groovy.srcDirs = [
-//            "src/test/groovy/jsonlenium/spock",
-//            "src/main/groovy/jsonlenium/"
-//        ]
-//    }
-//    unitTest { sourceSet ->
-//        sourceSet.groovy.srcDirs = [
-//            "src/test/groovy/jsonlenium/spock",
-//            "src/main/groovy/jsonlenium/"
-//        ]
-//    }
-}
-
-//dependencies {
-//    unitTestCompile sourceSets.test.output
-//    unitTestCompile configurations.compile
-//}
-
 task unitTest(type: Test) {
     outputs.upToDateWhen { false }
     testClassesDirs = sourceSets.test.output.classesDirs
