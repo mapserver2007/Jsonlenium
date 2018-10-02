@@ -1,6 +1,6 @@
 package jsonlenium.spock
 
-
+import jodd.util.ClassLoaderUtil
 import jsonlenium.build.CompileTest
 
 import spock.lang.Specification
@@ -398,7 +398,7 @@ class JSONファイル生成処理_正常系 extends Specification {
         def compile = new CompileTest()
 
         expect:
-        compile.testcases(['path': Class.getResource(filePath).path]) == 想定結果_正常系_テスト生成()
+        compile.testcases(['path': ClassLoaderUtil.getResource(filePath).path]) == 想定結果_正常系_テスト生成()
 
         where:
         event               | filePath
@@ -420,10 +420,10 @@ class JSONファイル生成処理_異常系 extends Specification {
         compile.testcases(['path': path]) == expect
 
         where:
-        cause                  | path                                                         || expect
-        "testfile not found"   | "dummy.json"                                                 || 想定結果_異常系_テスト生成_testfile_not_found()
-        "invalid testfile"     | Class.getResource("/json/compile/ng/01/01.json").path || 想定結果_異常系_テスト生成_invalid_testfile()
-        "invalid file format1" | Class.getResource("/json/compile/ng/02/01.json").path || 想定結果_異常系_テスト生成_invalid_file_format1()
-        "invalid file format2" | Class.getResource("/json/compile/ng/02/02.json").path || 想定結果_異常系_テスト生成_invalid_file_format2()
+        cause                  | path                                                            || expect
+        "testfile not found"   | "dummy.json"                                                    || 想定結果_異常系_テスト生成_testfile_not_found()
+        "invalid testfile"     | ClassLoaderUtil.getResource("/json/compile/ng/01/01.json").path || 想定結果_異常系_テスト生成_invalid_testfile()
+        "invalid file format1" | ClassLoaderUtil.getResource("/json/compile/ng/02/01.json").path || 想定結果_異常系_テスト生成_invalid_file_format1()
+        "invalid file format2" | ClassLoaderUtil.getResource("/json/compile/ng/02/02.json").path || 想定結果_異常系_テスト生成_invalid_file_format2()
     }
 }

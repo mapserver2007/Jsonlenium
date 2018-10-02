@@ -1,5 +1,6 @@
 package jsonlenium.spock.fixture
 
+import jodd.util.ClassLoaderUtil
 import jsonlenium.build.util.EventFactory
 import jsonlenium.constant.JsonleniumEnv
 import jsonlenium.constant.TestState
@@ -270,7 +271,7 @@ class TestcaseFixture {
     static テストケース取得(String filePath) {
         def factory = new EventFactory()
         factory.loadTestCase()
-        def fileList = factory.getTestFileList(Class.getResource(filePath).path)
+        def fileList = factory.getTestFileList(ClassLoaderUtil.getResource(filePath).path)
         def testcases = new ArrayList<HashMap<String, ?>>()
         factory.createTestCase(fileList) { List<?> testcase, boolean isCreateSuccess ->
             testcases.addAll(testcase)
