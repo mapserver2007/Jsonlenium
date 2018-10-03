@@ -41,7 +41,7 @@ workflows:
   version: 2
   test:
     jobs:
-    - build:
+    - test:
         filters:
           branches:
             only: feature/java8-gradle3
