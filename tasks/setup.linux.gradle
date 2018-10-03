@@ -71,7 +71,7 @@ task headlesschrome(dependsOn: chrome)
 task setupDriver {
     doLast {
         drivers.each { driver, ignore ->
-            dependsOn driver
+            tasks[driver].execute()
         }
     }
 }

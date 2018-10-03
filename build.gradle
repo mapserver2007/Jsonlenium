@@ -1,4 +1,3 @@
-apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'maven'
@@ -14,23 +13,12 @@ ext {
         "chrome": getProperty("selenium.webdriver.chrome"),
         "phantomjs": getProperty("selenium.webdriver.phantomjs")
     ]
-
     ant.condition(property: "os", value: "windows") { os(family: "windows") }
     ant.condition(property: "os", value: "linux"  ) { os(family: "unix")    }
     ant.condition(property: "phantomjsDriver", value: "windows/phantomjs_${drivers.phantomjs}.exe") { os(family: "windows") }
     ant.condition(property: "phantomjsDriver", value: "linux/phantomjs_${drivers.phantomjs}") { os(family: "unix") }
     ant.condition(property: "chromeDriver", value: "windows/chromedriver_${drivers.chrome}.exe") { os(family: "windows") }
     ant.condition(property: "chromeDriver", value: "linux/chromedriver_${drivers.chrome}") { os(family: "unix") }
-
-    files("tasks/setup.${ant.properties['os']}.gradle").each {
-        if (it.exists()) {
-            apply from: it
-        }
-    }
-
-    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
-        apply from: 'tasks/ignore_warnings.gradle'
-    }
 }
 
 sourceSets {
@@ -46,7 +34,7 @@ sourceSets {
 }
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:2.5.2"
+    compile "org.codehaus.groovy:groovy-all:2.4.15"
     compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
     compile 'org.gebish:geb-spock:1.1.1'
     compile "org.gebish:geb-core:1.1.1"
@@ -69,13 +57,15 @@ dependencies {
 }
 
 task uiTestCompile(type: Test) {
-    outputs.upToDateWhen { false }
-    testClassesDirs = sourceSets.uiTestCompile.output.classesDirs
-    classpath = sourceSets.uiTestCompile.runtimeClasspath
-
-    drivers.each { driver, ignore ->
-        dependsOn driver
+    sourceSets {
+        uiTestCompile { sourceSet ->
+            sourceSet.groovy.srcDir file("src/main/groovy/jsonlenium/build")
+        }
     }
+
+    outputs.upToDateWhen { false }
+    testClassesDir = sourceSets.uiTestCompile.output.classesDir
+    classpath = sourceSets.uiTestCompile.runtimeClasspath
 
     doFirst {
         systemProperty "jsonlenium.url", System.getProperty("url")
@@ -83,12 +73,19 @@ task uiTestCompile(type: Test) {
         systemProperty "jsonlenium.division", System.getProperty("division")
         systemProperty "jsonlenium.projectDir", projectDir
     }
+
+    doLast {
+        files("tasks/setup.${ant.properties['os']}.gradle").each {
+            if (it.exists()) apply from: it
+            tasks.setupDriver.execute()
+        }
+    }
 }
 
 task uiTest(type: Test, dependsOn: uiTestCompile) {
     mustRunAfter uiTestCompile
     outputs.upToDateWhen { false }
-    testClassesDirs = sourceSets.uiTest.output.classesDirs
+    testClassesDir = sourceSets.uiTest.output.classesDir
     classpath = sourceSets.uiTest.runtimeClasspath
 
     doFirst {
@@ -104,9 +101,8 @@ task uiTest(type: Test, dependsOn: uiTestCompile) {
 task uiParallelTest(type: Test, dependsOn: uiTestCompile) {
     mustRunAfter uiTestCompile
     outputs.upToDateWhen { false }
-    testClassesDirs = sourceSets.uiParallelTest.output.classesDirs
+    testClassesDir = sourceSets.uiParallelTest.output.classesDir
     classpath = sourceSets.uiParallelTest.runtimeClasspath
-
     maxParallelForks Runtime.runtime.availableProcessors()
     forkEvery 5
 
@@ -119,4 +115,3 @@ task uiParallelTest(type: Test, dependsOn: uiTestCompile) {
         systemProperty "jsonlenium.division", System.getProperty("division")
     }
 }
-

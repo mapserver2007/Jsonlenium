@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/openjdk:10.0.2-jdk-browsers
+      - image: circleci/openjdk:8-jdk-browsers
         environment:
           - LOCALE: ja
           - LANG: ja_JP.UTF-8
@@ -41,4 +41,7 @@ workflows:
   version: 2
   test:
     jobs:
-      - test
+    - build:
+        filters:
+          branches:
+            only: feature/java8-gradle3

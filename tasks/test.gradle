@@ -2,15 +2,8 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 
-ext {
-    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
-        apply from: 'tasks/ignore_warnings.gradle'
-    }
-}
-
 task unitTest(type: Test) {
-    outputs.upToDateWhen { false }
-    testClassesDirs = sourceSets.test.output.classesDirs
+    testClassesDir = sourceSets.test.output.classesDir
     classpath = sourceSets.test.runtimeClasspath
 
     doFirst {
@@ -20,27 +13,27 @@ task unitTest(type: Test) {
     }
 }
 
-task coverageTest(type: JacocoReport, dependsOn: unitTest) {
+task coverageTest(type: JacocoReport, dependsOn: [unitTest]) {
     reports {
-        html.setDestination(file("${projectDir}/build/reports/coverage/${project.name}"))
+        html {
+            destination "${project.rootDir}/build/reports/coverage/${project.name}"
+        }
         html.enabled = true
         xml.enabled = false
         csv.enabled = false
     }
-
     classDirectories = fileTree(
-        dir: "${projectDir}/build/classes/groovy/main",
+        dir: './build/classes/main',
         excludes: [
             '**/T0*.class'
         ]
     )
-
     sourceDirectories = files('src/main/groovy')
     executionData = files('build/jacoco/unitTest.exec')
 
     doLast {
         jacoco {
-            reportsDir = file("${buildDir}/reports/coverage")
+            reportsDir = file("$buildDir/reports/coverage")
         }
     }
 }
