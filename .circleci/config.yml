@@ -43,5 +43,5 @@ workflows:
     jobs:
     - test:
         filters:
-          branches:
-            only: feature/java8-gradle3
+          tags:
+            only: jsonlenium-1.0.0
