@@ -1,0 +1,22 @@
+{
+    "testsuite": [
+        {
+            "url": "http://kakaku.com/",
+            "testcase": [
+                {
+                    "selector": "title",
+                    "expect": "価格.com - 「買ってよかった」をすべてのひとに。"
+                }
+            ]
+        },
+        {
+            "url": "https://www.yahoo.co.jp/",
+            "testcase": [
+                {
+                    "selector": "title",
+                    "expect": "Yahoo! JAPAN"
+                }
+            ]
+        }
+    ]
+}
