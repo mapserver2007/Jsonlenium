@@ -22,6 +22,12 @@ jobs:
             sudo locale-gen
             sudo update-locale LANG=ja_JP.UTF-8
 
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+             chmod +x ./cc-test-reporter
+
       - restore_cache:
           keys:
             - dependency-cache-{{ checksum "build.gradle" }}
@@ -47,12 +53,21 @@ jobs:
       - store_artifacts:
           name: Create spock report
           path: ~/.project/build/reports/tests/unitTest
-          destination: reports
+          destination: reports/spock
 
       - store_artifacts:
           name: Create Jacoco coverage report
           path: ~/.project/build/reports/coverage
-          destination: reports
+          destination: reports/jacoco
+
+      - deploy:
+          name: Send coverage report to Code Climate
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+            ./cc-test-reporter format-coverage --input-type jacoco -d ~/.project/build/reports/jacoco/coverageTest/coverageTest.xml
+            ./cc-test-reporter upload-coverage
 
 workflows:
   version: 2
