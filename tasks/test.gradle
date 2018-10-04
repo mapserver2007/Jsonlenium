@@ -24,7 +24,7 @@ task coverageTest(type: JacocoReport, dependsOn: unitTest) {
     reports {
         html.setDestination(file("${projectDir}/build/reports/coverage/${project.name}"))
         html.enabled = true
-        xml.enabled = false
+        xml.enabled = true
         csv.enabled = false
     }
 

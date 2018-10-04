@@ -38,14 +38,20 @@ jobs:
             java -version
             chmod +x gradlew
             ./gradlew cleanAll
-            ./gradlew unitTest
+            ./gradlew coverageTest
 
       - store_test_results:
           path: ~/.project/build/test-results/unitTest
           destination: /tmp/test-results
 
       - store_artifacts:
-          path: ~/.project/build/reports/
+          name: Create spock report
+          path: ~/.project/build/reports/tests/unitTest
+          destination: reports
+
+      - store_artifacts:
+          name: Create Jacoco coverage report
+          path: ~/.project/build/reports/coverage
           destination: reports
 
 workflows:
