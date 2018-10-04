@@ -44,7 +44,7 @@ jobs:
           path: ~/.project/build/test-results/unitTest
           destination: /tmp/test-results
 
-      - store_reports:
+      - store_artifacts:
           path: ~/.project/build/reports/
           destination: reports
 
