@@ -25,7 +25,10 @@ tasks.withType(Test) {
             "--add-opens=java.base/java.lang=ALL-UNNAMED",
             "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
             "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED",
+            "--add-opens=java.base/javax.net.ssl=ALL-UNNAMED",
             "--add-opens=java.base/sun.nio.cs=ALL-UNNAMED",
+            "--add-opens=java.base/sun.net.www.protocol.http=ALL-UNNAMED",
+            "--add-opens=java.base/sun.net.www.protocol.https=ALL-UNNAMED",
             "--add-opens=java.logging/java.util.logging=ALL-UNNAMED"
         ]
     }
