@@ -46,7 +46,7 @@ jobs:
 
       - store_reports:
           path: ~/.project/build/reports/
-          destination: /tmp/reports
+          destination: reports
 
 workflows:
   version: 2
