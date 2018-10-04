@@ -8,6 +8,7 @@ jobs:
           - LANG: ja_JP.UTF-8
           - TZ: Asia/Tokyo
           - CIRCLE_TEST_REPORTS: /tmp/test-results
+          - JACOCO_SOURCE_PATH: src/main/groovy
 
     working_directory: ~/.project
 
@@ -63,7 +64,6 @@ jobs:
       - deploy:
           name: Send coverage report to Code Climate
           command: |
-            cd src/main/groovy
             ./cc-test-reporter before-build
             ./cc-test-reporter format-coverage --input-type jacoco -d ~/.project/build/reports/jacoco/coverageTest/coverageTest.xml
             ./cc-test-reporter upload-coverage
