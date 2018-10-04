@@ -2,11 +2,11 @@ package jsonlenium.build
 
 import groovyx.net.http.URIBuilder
 import jsonlenium.build.util.EventFactory
-import jsonlenium.build.util.MessageLocale
 import jsonlenium.build.util.TestFileGenerator
 import jsonlenium.constant.JsonleniumEnv
 import jsonlenium.ui.Jsonlenium
 import jsonlenium.util.Message
+import jsonlenium.util.MessageLocale
 import org.codehaus.groovy.tools.Utilities
 import spock.lang.Ignore
 import spock.lang.Unroll

@@ -1,4 +1,4 @@
-package jsonlenium.build.util
+package jsonlenium.util
 
 import jsonlenium.constant.JsonleniumEnv
 
