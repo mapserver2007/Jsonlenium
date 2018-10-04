@@ -33,12 +33,12 @@ jobs:
             - ~/.gradle
 
       - run:
-        name: run unit test
-        command: |
-          java -version
-          chmod +x gradlew
-          ./gradlew cleanAll
-          ./gradlew unitTest
+          name: run unit test
+          command: |
+            java -version
+            chmod +x gradlew
+            ./gradlew cleanAll
+            ./gradlew unitTest
 
       - store_artifacts:
           path: ~/.project/build/reports/
