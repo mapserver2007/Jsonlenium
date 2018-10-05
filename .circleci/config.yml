@@ -7,7 +7,7 @@ jobs:
           - LOCALE: ja
           - LANG: ja_JP.UTF-8
           - TZ: Asia/Tokyo
-          - CIRCLE_TEST_REPORTS: ~/.project/build/reports/tests/unitTest
+          - CIRCLE_TEST_REPORTS: /tmp/test-results
           - JACOCO_SOURCE_PATH: src/main/groovy
 
     working_directory: ~/.project
@@ -50,6 +50,11 @@ jobs:
           name: Create Jacoco coverage report
           path: ~/.project/build/reports/coverage
           destination: reports/jacoco
+
+      - store_artifacts:
+          name: Create test summary
+          path: ~/.project/build/reports/tests/unitTest
+          destination: /tmp/test-results
 
       - run:
           name: Setup Code Climate test-reporter
