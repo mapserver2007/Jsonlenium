@@ -6,7 +6,7 @@
 | string | 必須      | なし |
 
 ```json
-"url": "http://kakaku.com/"
+"url": "http://example.com/"
 ```
 
 ## testcase
@@ -18,7 +18,7 @@
 "testcase": [
     {
         "selector": "title",
-        "expect": "価格.com - 「買ってよかった」をすべてのひとに。"
+        "expect": "actual"
     }
 ]
 ```
@@ -123,7 +123,7 @@
     {
         "selector": "title",
         "remark": "コメント自由記述",
-        "expect": "価格.com - 「買ってよかった」をすべてのひとに。"
+        "expect": "actual"
     }
 ]
 ```
