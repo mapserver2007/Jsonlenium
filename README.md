@@ -37,6 +37,14 @@ Available Gradle tasks:
 | -i         | Output the log as standard output (info level).                                                                                                                                                                                                         | -i                      | -        |
 | -d         | Output the log as standard output (debug level).                                                                                                                                                                                                        | -d                      | -        |
 
+## Unit test in each JDK version
+| JDK name | OS | build version | testing result |
+|-----------------|-----|---------------------------|----------------|
+| OpenJDK | mac | 1.8 (1.8.0_192) | ok |
+| AdoptOpenJDK | mac | 1.8 (1.8.0_202) | ok |
+| amazon-corretto | mac | 1.8 (Corretto-8.202.08.2) | ok |
+| amazon-corretto | mac | 11.0 | ng |
+
 ## License
 Licensed under the MIT
 http://www.opensource.org/licenses/mit-license.php
