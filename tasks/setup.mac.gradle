@@ -1,0 +1,77 @@
+task phantomjs {
+    def fileName = "phantomjs_${drivers.phantomjs}"
+    def filepathExe = file("${projectDir}/driver/${ant.properties['os']}/${fileName}")
+    def tmpDir = System.getProperty("java.io.tmpdir")
+    def destPath = file("${tmpDir}/phantomjs.zip")
+    def url = "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${drivers.phantomjs}-macosx.zip"
+
+    def destDir = new File("${projectDir}/driver")
+    if (!destDir.exists()) {
+        destDir.mkdir()
+    }
+
+    doLast {
+        if (filepathExe.exists()) {
+            return
+        }
+
+        ext {
+            ant.get(src: url, dest: destPath, verbose: true)
+        }
+
+        copy {
+            from zipTree(destPath)
+            into file(tmpDir)
+        }
+
+        copy {
+            from file("${tmpDir}/phantomjs-${drivers.phantomjs}-macosx/bin/phantomjs")
+            into file("${destDir}/${ant.properties['os']}")
+            rename { fileName }
+        }
+    }
+}
+
+task chrome {
+    def fileName = "chromedriver_${drivers.chrome}"
+    def filepathExe = file("${projectDir}/driver/${ant.properties['os']}/${fileName}")
+    def tmpDir = System.getProperty("java.io.tmpdir")
+    def destPath = file("${tmpDir}/chromedriver_mac64.zip")
+    def url = "https://chromedriver.storage.googleapis.com/${drivers.chrome}/chromedriver_mac64.zip"
+
+    def destDir = new File("${projectDir}/driver")
+    if (!destDir.exists()) {
+        destDir.mkdir()
+    }
+
+    doLast {
+        if (filepathExe.exists()) {
+            return
+        }
+
+        ext {
+            ant.get(src: url, dest: destPath, verbose: true)
+        }
+
+        copy {
+            from zipTree(destPath)
+            into file(tmpDir)
+        }
+
+        copy {
+            from file("${tmpDir}/chromedriver")
+            into file("${destDir}/${ant.properties['os']}")
+            rename { fileName }
+        }
+    }
+}
+
+task headlesschrome(dependsOn: chrome)
+
+task setupDriver {
+    doLast {
+        drivers.each { driver, ignore ->
+            dependsOn driver
+        }
+    }
+}

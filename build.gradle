@@ -5,6 +5,8 @@ apply plugin: 'maven'
 apply from: 'tasks/test.gradle'
 apply from: 'tasks/cleanup.gradle'
 
+import org.gradle.internal.os.OperatingSystem
+
 repositories {
     mavenCentral()
 }
@@ -16,11 +18,18 @@ ext {
     ]
 
     ant.condition(property: "os", value: "windows") { os(family: "windows") }
-    ant.condition(property: "os", value: "linux"  ) { os(family: "unix")    }
     ant.condition(property: "phantomjsDriver", value: "windows/phantomjs_${drivers.phantomjs}.exe") { os(family: "windows") }
-    ant.condition(property: "phantomjsDriver", value: "linux/phantomjs_${drivers.phantomjs}") { os(family: "unix") }
     ant.condition(property: "chromeDriver", value: "windows/chromedriver_${drivers.chrome}.exe") { os(family: "windows") }
-    ant.condition(property: "chromeDriver", value: "linux/chromedriver_${drivers.chrome}") { os(family: "unix") }
+
+    if (OperatingSystem.current().isMacOsX()) {
+        ant.condition(property: "os", value: "mac") { os(family: "mac") }
+        ant.condition(property: "phantomjsDriver", value: "mac/phantomjs_${drivers.phantomjs}") { os(family: "mac") }
+        ant.condition(property: "chromeDriver", value: "mac/chromedriver_${drivers.chrome}") { os(family: "mac") }
+    } else if (OperatingSystem.current().isLinux() || OperatingSystem.current().isUnix()) {
+        ant.condition(property: "os", value: "linux") { os(family: "unix") }
+        ant.condition(property: "phantomjsDriver", value: "linux/phantomjs_${drivers.phantomjs}") { os(family: "unix") }
+        ant.condition(property: "chromeDriver", value: "linux/chromedriver_${drivers.chrome}") { os(family: "unix") }
+    }
 
     files("tasks/setup.${ant.properties['os']}.gradle").each {
         if (it.exists()) {
