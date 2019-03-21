@@ -37,7 +37,7 @@ Available Gradle tasks:
 | -i         | Output the log as standard output (info level).                                                                                                                                                                                                         | -i                      | -        |
 | -d         | Output the log as standard output (debug level).                                                                                                                                                                                                        | -d                      | -        |
 
-## Unit test in each JDK version
+## Test in each JDK version
 | JDK name        | OS      | build version             | testing result |
 |-----------------|---------|---------------------------|----------------|
 | OpenJDK         | windows | 1.8 (1.8.0_201)           | ok             |
@@ -45,10 +45,11 @@ Available Gradle tasks:
 | AdoptOpenJDK    | windows | 1.8 (1.8.0_202)           | ok             |
 | AdoptOpenJDK    | macosx  | 1.8 (1.8.0_202)           | ok             |
 | AdoptOpenJDK    | windows | 11.0.2_9                  | ok             |
+| AdoptOpenJDK    | macosx  | 11.0.1                    | ok             |
 | amazon-corretto | windows | 1.8 (Corretto-8.202.08.2) | ok             |
 | amazon-corretto | macosx  | 1.8 (Corretto-8.202.08.2) | ok             |
 | amazon-corretto | windows | 11.0                      | ok             |
-| amazon-corretto | macosx  | 11.0                      | ng             |
+| amazon-corretto | macosx  | 11.0                      | ok             |
 
 ## License
 Licensed under the MIT
