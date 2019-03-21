@@ -28,15 +28,15 @@ task coverageTest(type: JacocoReport, dependsOn: unitTest) {
         csv.enabled = false
     }
 
-    classDirectories = fileTree(
+    classDirectories.from = fileTree(
         dir: "${projectDir}/build/classes/groovy/main",
         excludes: [
             '**/T0*.class'
         ]
     )
 
-    sourceDirectories = files('src/main/groovy')
-    executionData = files('build/jacoco/unitTest.exec')
+    classDirectories.from = files('src/main/groovy')
+    executionData.from = files('build/jacoco/unitTest.exec')
 
     doLast {
         jacoco {
