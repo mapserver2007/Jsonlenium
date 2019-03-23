@@ -9,22 +9,32 @@
 # returns the JDK version.
 # 8 for 1.8.0_nn, 9 for 9-ea etc, and "no_java" for undetected
 jdk_version() {
-    local result
-    local lines=$(java -version 2>&1 | tr '\r' '\n')
-    for line in $lines; do
-        if [ -z $result ]; then
-            if [ $line = *"version \""* ]; then
-                local ver=$(echo $line | sed -e 's/.*version "\(.*\)"\(.*\)/\1/; 1q')
-                # on macOS, sed doesn't support '?'
-                if [ $ver = "1."* ]; then
-                    result=$(echo $ver | sed -e 's/1\.\([0-9]*\)\(.*\)/\1/; 1q')
+    local_result=""
+    local_java_cmd=""
+    if [ -n $(which java) ]; then
+        local_java_cmd=java
+    elif [ -n "$JAVA_HOME" && -x "$JAVA_HOME/bin/java" ]; then
+        local_java_cmd="$JAVA_HOME/bin/java"
+    fi
+    IFS='
+'
+    # remove \r for Cygwin
+    local_lines=$("$local_java_cmd" -Xms32M -Xmx32M -version 2>&1 | tr '\r' '\n')
+    if [ -z $local_java_cmd ]; then
+        local_result=no_java
+    else
+        for local_line in $local_lines; do
+            if [ -z $local_result ]; then
+                local_ver=$(echo $local_line | sed -e 's/.*version "\(.*\)"\(.*\)/\1/; 1q')
+                if [ $local_ver = "1."* ]; then
+                    local_result=$(echo $local_ver | sed -e 's/1\.\([0-9]*\)\(.*\)/\1/; 1q')
                 else
-                    result=$(echo $ver | sed -e 's/\([0-9]*\)\(.*\)/\1/; 1q')
+                    local_result=$(echo $local_ver | sed -e 's/\([0-9]*\)\(.*\)/\1/; 1q')
                 fi
             fi
-        fi
-    done
-    echo "$result"
+        done
+    fi
+    echo "$local_result"
 }
 
 # Attempt to set APP_HOME
@@ -50,11 +60,6 @@ APP_BASE_NAME=`basename "$0"`
 
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 # DEFAULT_JVM_OPTS=--illegal-access=deny --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
-
-# Correspondence to become "Illegal reflective access" in jdk version 9 or more
-if [ $jdk_version >= 9 ]; then
-    DEFAULT_JVM_OPTS=--illegal-access=deny
-fi
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
@@ -112,6 +117,13 @@ else
 
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
+fi
+
+# Correspondence to become "Illegal reflective access" in jdk version 9 or more
+v="$(jdk_version)"
+echo $v
+if [ "$v" -gt 8 ]; then
+    DEFAULT_JVM_OPTS=--illegal-access=deny
 fi
 
 # Increase the maximum file descriptors if we can.
