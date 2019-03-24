@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/openjdk:10.0.2-jdk-browsers
+      - image: circleci/openjdk:11.0.2-jdk-browsers
         environment:
           - LOCALE: ja
           - LANG: ja_JP.UTF-8
