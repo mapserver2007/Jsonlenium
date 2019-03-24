@@ -121,7 +121,6 @@ fi
 
 # Correspondence to become "Illegal reflective access" in jdk version 9 or more
 v="$(jdk_version)"
-echo $v
 if [ "$v" -gt 8 ]; then
     DEFAULT_JVM_OPTS=--illegal-access=deny
 fi
