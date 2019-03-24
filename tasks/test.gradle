@@ -21,8 +21,13 @@ task unitTest(type: Test) {
 }
 
 task coverageTest(type: JacocoReport, dependsOn: unitTest) {
+    jacoco {
+        executionData.from = files('build/jacoco/unitTest.exec')
+        reportsDir = file("${buildDir}/reports/coverage")
+    }
+
     reports {
-        html.setDestination(file("${projectDir}/build/reports/coverage/${project.name}"))
+        html.setDestination(file("${projectDir}/build/reports/coverage"))
         html.enabled = true
         xml.enabled = true
         csv.enabled = false
@@ -36,11 +41,4 @@ task coverageTest(type: JacocoReport, dependsOn: unitTest) {
     )
 
     classDirectories.from files('src/main/groovy')
-
-    doLast {
-        jacoco {
-            destinationFile = files('build/jacoco/unitTest.exec')
-            reportsDir = file("${buildDir}/reports/coverage")
-        }
-    }
 }
