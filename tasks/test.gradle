@@ -21,6 +21,8 @@ task unitTest(type: Test) {
 }
 
 task coverageTest(type: JacocoReport, dependsOn: unitTest) {
+    outputs.upToDateWhen { false }
+
     jacoco {
         executionData.from = files('build/jacoco/unitTest.exec')
         reportsDir = file("${buildDir}/reports/coverage")
