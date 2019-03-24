@@ -122,7 +122,9 @@ fi
 # Correspondence to become "Illegal reflective access" in jdk version 9 or more
 v="$(jdk_version)"
 if [ "$v" -gt 8 ]; then
-    DEFAULT_JVM_OPTS=--illegal-access=deny
+    if [ "$1" != "coverageTest" ]; then
+        DEFAULT_JVM_OPTS=--illegal-access=deny
+    fi
 fi
 
 # Increase the maximum file descriptors if we can.
