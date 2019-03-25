@@ -33,7 +33,7 @@ commands:
           name: Send coverage report to Code Climate
           command: |
             ./cc-test-reporter before-build
-            ./cc-test-reporter format-coverage --input-type jacoco -d ~/.project/build/reports/coverage/coverageTest/coverageTest.xml
+            ./cc-test-reporter format-coverage --input-type jacoco -d ~/project/build/reports/coverage/coverageTest/coverageTest.xml
             ./cc-test-reporter upload-coverage
 
   build_and_testing:
@@ -68,17 +68,17 @@ commands:
 
       - store_artifacts:
           name: Create spock report
-          path: ~/.project/build/reports/tests/unitTest
+          path: ~/project/build/reports/tests/unitTest
           destination: reports/spock
 
       - store_artifacts:
           name: Create Jacoco coverage report
-          path: ~/.project/build/reports/coverage
+          path: ~/project/build/reports/coverage
           destination: reports/coverageTest
 
       - store_artifacts:
           name: Create test summary
-          path: ~/.project/build/reports/tests/unitTest
+          path: ~/project/build/reports/tests/unitTest
           destination: /tmp/test-results
 
 jobs:
