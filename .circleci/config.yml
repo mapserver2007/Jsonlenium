@@ -1,17 +1,27 @@
-version: 2
-jobs:
-  test:
+version: 2.1
+
+executors:
+  jdk8:
     docker:
-      - image: circleci/openjdk:11.0.2-jdk-browsers
+      - image: circleci/openjdk:8u181-jdk-browsers
         environment:
-          - LOCALE: ja
-          - LANG: ja_JP.UTF-8
-          - TZ: Asia/Tokyo
-          - CIRCLE_TEST_REPORTS: /tmp/test-results
-          - JACOCO_SOURCE_PATH: src/main/groovy
+        - LOCALE: ja
+        - LANG: ja_JP.UTF-8
+        - TZ: Asia/Tokyo
+        - CIRCLE_TEST_REPORTS: /tmp/test-results
+        - JACOCO_SOURCE_PATH: src/main/groovy
+  jdk11:
+    docker:
+    - image: circleci/openjdk:11.0.2-jdk-browsers
+      environment:
+      - LOCALE: ja
+      - LANG: ja_JP.UTF-8
+      - TZ: Asia/Tokyo
+      - CIRCLE_TEST_REPORTS: /tmp/test-results
+      - JACOCO_SOURCE_PATH: src/main/groovy
 
-    working_directory: ~/.project
-
+commands:
+  build_and_testing:
     steps:
       - checkout
       - run:
@@ -25,13 +35,13 @@ jobs:
 
       - restore_cache:
           keys:
-            - dependency-cache-{{ checksum "build.gradle" }}
-            - dependency-cache-
+          - dependency-cache-{{ checksum "build.gradle" }}
+          - dependency-cache-
 
       - save_cache:
           key: dependency-cache-{{ checksum "build.gradle" }}
           paths:
-            - ~/.gradle
+          - ~/.gradle
 
       - run:
           name: Run unit test
@@ -69,8 +79,23 @@ jobs:
             ./cc-test-reporter format-coverage --input-type jacoco -d ~/.project/build/reports/coverage/coverageTest/coverageTest.xml
             ./cc-test-reporter upload-coverage
 
+jobs:
+  test-on-jdk8:
+    executor:
+      name: jdk8
+      tag: 8
+    steps:
+      - build_and_testing
+  test-on-jdk11:
+    executor:
+      name: jdk11
+      tag: 11
+    steps:
+      - build_and_testing
+
 workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test-on-jdk8
+      - test-on-jdk11
