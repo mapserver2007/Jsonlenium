@@ -21,6 +21,21 @@ executors:
         - JACOCO_SOURCE_PATH: src/main/groovy
 
 commands:
+  coverage:
+    steps:
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
+      - deploy:
+          name: Send coverage report to Code Climate
+          command: |
+            ./cc-test-reporter before-build
+            ./cc-test-reporter format-coverage --input-type jacoco -d ~/.project/build/reports/coverage/coverageTest/coverageTest.xml
+            ./cc-test-reporter upload-coverage
+
   build_and_testing:
     steps:
       - checkout
@@ -66,19 +81,6 @@ commands:
           path: ~/.project/build/reports/tests/unitTest
           destination: /tmp/test-results
 
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-
-      - deploy:
-          name: Send coverage report to Code Climate
-          command: |
-            ./cc-test-reporter before-build
-            ./cc-test-reporter format-coverage --input-type jacoco -d ~/.project/build/reports/coverage/coverageTest/coverageTest.xml
-            ./cc-test-reporter upload-coverage
-
 jobs:
   test-on-jdk8:
     executor:
@@ -90,6 +92,7 @@ jobs:
       name: jdk11
     steps:
       - build_and_testing
+      - coverage
 
 workflows:
   version: 2
