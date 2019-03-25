@@ -12,13 +12,13 @@ executors:
         - JACOCO_SOURCE_PATH: src/main/groovy
   jdk11:
     docker:
-    - image: circleci/openjdk:11.0.2-jdk-browsers
-      environment:
-      - LOCALE: ja
-      - LANG: ja_JP.UTF-8
-      - TZ: Asia/Tokyo
-      - CIRCLE_TEST_REPORTS: /tmp/test-results
-      - JACOCO_SOURCE_PATH: src/main/groovy
+      - image: circleci/openjdk:11.0.2-jdk-browsers
+        environment:
+        - LOCALE: ja
+        - LANG: ja_JP.UTF-8
+        - TZ: Asia/Tokyo
+        - CIRCLE_TEST_REPORTS: /tmp/test-results
+        - JACOCO_SOURCE_PATH: src/main/groovy
 
 commands:
   build_and_testing:
@@ -83,13 +83,11 @@ jobs:
   test-on-jdk8:
     executor:
       name: jdk8
-      tag: 8
     steps:
       - build_and_testing
   test-on-jdk11:
     executor:
       name: jdk11
-      tag: 11
     steps:
       - build_and_testing
 
