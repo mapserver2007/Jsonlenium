@@ -21,26 +21,26 @@ task unitTest(type: Test) {
 }
 
 task coverageTest(type: JacocoReport, dependsOn: unitTest) {
+    outputs.upToDateWhen { false }
+
+    jacoco {
+        executionData.from = files('build/jacoco/unitTest.exec')
+        reportsDir = file("${buildDir}/reports/coverage")
+    }
+
     reports {
-        html.setDestination(file("${projectDir}/build/reports/coverage/${project.name}"))
+        html.setDestination(file("${projectDir}/build/reports/coverage"))
         html.enabled = true
         xml.enabled = true
         csv.enabled = false
     }
 
-    classDirectories = fileTree(
+    classDirectories.from fileTree(
         dir: "${projectDir}/build/classes/groovy/main",
         excludes: [
             '**/T0*.class'
         ]
     )
 
-    sourceDirectories = files('src/main/groovy')
-    executionData = files('build/jacoco/unitTest.exec')
-
-    doLast {
-        jacoco {
-            reportsDir = file("${buildDir}/reports/coverage")
-        }
-    }
+    classDirectories.from files('src/main/groovy')
 }

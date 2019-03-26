@@ -1,6 +1,6 @@
 # Jsonlenium
 [![CircleCI](https://circleci.com/gh/mapserver2007/Jsonlenium/tree/master.svg?style=svg)](https://circleci.com/gh/mapserver2007/Jsonlenium/tree/master)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/fa780bc872652811102c/test_coverage)](https://codeclimate.com/github/mapserver2007/Jsonlenium/test_coverage)  
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fa780bc872652811102c/test_coverage)](https://codeclimate.com/github/mapserver2007/Jsonlenium/test_coverage)
 Jsonlenium is a tool to perform E2E tests using JSON files.
 
 ## Preparation
@@ -36,6 +36,20 @@ Available Gradle tasks:
 | -Dtimeout  | Maximum response time of running test (sec).<br>If the response becomes longer than the timeout time, it ends as an NG test.<br>Timeout is unlimited if not specified.                                                                                  | -Dtimeout=300           | -        |
 | -i         | Output the log as standard output (info level).                                                                                                                                                                                                         | -i                      | -        |
 | -d         | Output the log as standard output (debug level).                                                                                                                                                                                                        | -d                      | -        |
+
+## Test in each JDK version
+| JDK name        | OS      | build version             | testing result |
+|-----------------|---------|---------------------------|----------------|
+| OpenJDK         | windows | 1.8 (1.8.0_201)           | ok             |
+| OpenJDK         | macosx  | 1.8 (1.8.0_192)           | ok             |
+| AdoptOpenJDK    | windows | 1.8 (1.8.0_202)           | ok             |
+| AdoptOpenJDK    | macosx  | 1.8 (1.8.0_202)           | ok             |
+| AdoptOpenJDK    | windows | 11.0.2_9                  | ok             |
+| AdoptOpenJDK    | macosx  | 11.0.1                    | ok             |
+| amazon-corretto | windows | 1.8 (Corretto-8.202.08.2) | ok             |
+| amazon-corretto | macosx  | 1.8 (Corretto-8.202.08.2) | ok             |
+| amazon-corretto | windows | 11.0                      | ok             |
+| amazon-corretto | macosx  | 11.0                      | ok             |
 
 ## License
 Licensed under the MIT
