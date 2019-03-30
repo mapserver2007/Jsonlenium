@@ -65,8 +65,8 @@ dependencies {
     compile 'org.slf4j:slf4j-log4j12:1.7.25'
     compile 'com.jayway.jsonpath:json-path:2.4.0'
     compile 'commons-io:commons-io:2.6'
-    compile "org.seleniumhq.selenium:selenium-chrome-driver:3.14.0"
-    compile "org.seleniumhq.selenium:selenium-support:3.14.0"
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:3.141.5"
+    compile "org.seleniumhq.selenium:selenium-support:3.141.5"
     compile "com.codeborne:phantomjsdriver:1.4.4"
 
     uiTestCompile sourceSets.main.output
