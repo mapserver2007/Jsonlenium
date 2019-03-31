@@ -57,8 +57,8 @@ sourceSets {
 dependencies {
     compile "org.codehaus.groovy:groovy-all:2.5.5"
     compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
-    compile 'org.gebish:geb-spock:1.1.1'
-    compile "org.gebish:geb-core:1.1.1"
+    compile 'org.gebish:geb-spock:2.3.1'
+    compile "org.gebish:geb-core:2.3.1"
     compile 'org.spockframework:spock-core:1.2-groovy-2.5'
     compile 'org.jsoup:jsoup:1.11.3'
     compile 'org.apache.ant:ant:1.9.7'
