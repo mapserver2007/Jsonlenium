@@ -45,7 +45,7 @@ Available Gradle tasks:
 | AdoptOpenJDK    | windows | 1.8 (1.8.0_202)           | ok             |
 | AdoptOpenJDK    | macosx  | 1.8 (1.8.0_202)           | ok             |
 | AdoptOpenJDK    | windows | 11.0.2_9                  | ok             |
-| AdoptOpenJDK    | macosx  | 11.0.1                    | ok             |
+| AdoptOpenJDK    | macosx  | 11.0.8                    | ok             |
 | amazon-corretto | windows | 1.8 (Corretto-8.202.08.2) | ok             |
 | amazon-corretto | macosx  | 1.8 (Corretto-8.202.08.2) | ok             |
 | amazon-corretto | windows | 11.0                      | ok             |
